@@ -1,0 +1,53 @@
+### 06.03.2017 22:05:39
+Array
+(
+    [title] => Урок 8
+    [logout] => <p><a href='/login/'>Войти</a></p>
+    [greetings] => 
+)
+
+
+
+### 06.03.2017 22:11:44
+Array
+(
+    [title] => Урок 8
+    [logout] => <p><a href='/logout/'>Выйти</p>
+<p><a href='/cabinet/'>Личный кабинет</p>
+    [greetings] => 
+)
+
+
+
+### 06.03.2017 22:11:49
+Array
+(
+    [title] => Урок 8
+    [logout] => <p><a href='/logout/'>Выйти</p>
+<p><a href='/cabinet/'>Личный кабинет</p>
+    [greetings] => 
+)
+
+
+
+### 06.03.2017 22:11:51
+Array
+(
+    [title] => Урок 8
+    [logout] => <p><a href='/logout/'>Выйти</p>
+<p><a href='/cabinet/'>Личный кабинет</p>
+    [greetings] => 
+)
+
+
+
+### 06.03.2017 22:11:52
+Array
+(
+    [title] => Урок 8
+    [logout] => <p><a href='/login/'>Войти</a></p>
+    [greetings] => 
+)
+
+
+
