@@ -1,0 +1,4 @@
+### 09.03.2017 22:01:49
+SELECT MAX(id_order) FROM orders WHERE id_user = 1
+
+

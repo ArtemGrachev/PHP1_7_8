@@ -39,6 +39,7 @@ function renderPage($page_name, $variables = [], $isAjax = false)
         // AJAX запросы
         $full_result = $variables['response'];
     }
+
     return $full_result;
 }
 
@@ -59,19 +60,15 @@ function pasteValues($variables, $page_name, $templateContent){
             $result = "";
 
             foreach ($value as $value_key => $item){
-                
-                $tplName = TPL_DIR . "/" . $page_name ."_".$key."_item.tpl";
-                if (file_exists($tplName)) {
-                    $itemTemplateContent = file_get_contents($tplName);
+                $itemTemplateContent = file_get_contents(TPL_DIR . "/" . $page_name ."_".$key."_item.tpl");
 
-                    foreach($item as $item_key => $item_value){
-                        $i_key = '{{' . strtoupper($item_key) . '}}';
+                foreach($item as $item_key => $item_value){
+                    $i_key = '{{' . strtoupper($item_key) . '}}';
 
-                        $itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
-                    }
-
-                    $result .= $itemTemplateContent;
+                    $itemTemplateContent = str_replace($i_key, $item_value, $itemTemplateContent);
                 }
+
+                $result .= $itemTemplateContent;
             }
         }
         else
@@ -79,6 +76,6 @@ function pasteValues($variables, $page_name, $templateContent){
 
         $templateContent = str_replace($p_key, $result, $templateContent);
     }
-    $templateContent = preg_replace('/\{\{\w+\}\}/iu', '', $templateContent);
+
     return $templateContent;
 }

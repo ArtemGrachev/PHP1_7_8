@@ -1,1 +1,1 @@
-<li>{{QUANTITY}} {{GOOD_NAME}} : {{PRICE}} | <a class='remove' href='/basketAction/?id_product={{ID_GOOD}}'>Удалить</a></li>
+<li>{{GOOD_NAME}} : {{GOOD_PRICE}} | <span class='remove' id='basket_{{ID_BASKET}}'>Удалить</span></li>

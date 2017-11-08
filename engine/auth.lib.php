@@ -77,6 +77,10 @@ function checkPassword($password, $hash){
     return crypt($password, $hash) === $hash;
 }
 
+/**
+ * Возвращает флаг залогиненного или анонимного пользователя
+ * @return bool - true if logged in
+ */
 function alreadyLoggedIn(){
     return isset($_SESSION['user']);
 }

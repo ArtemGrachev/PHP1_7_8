@@ -1,12 +1,11 @@
 <?php
 define('SITE_ROOT', "../");
 define('WWW_ROOT', SITE_ROOT . '/public');
-define('HTTP', 'http://homework.com/');
 
 /* DB config */
 define('HOST', 'localhost');
-define('USER', 'pma');
-define('PASS', 'GeQeKAd1zirO3EL5Li4Emot1jO8ifE');
+define('USER', 'test_user');
+define('PASS', 'pass');
 define('DB', 'gb_php_lvl_1');
 
 define('DATA_DIR', SITE_ROOT . 'data');

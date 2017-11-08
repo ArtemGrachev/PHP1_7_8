@@ -10,8 +10,8 @@ $(document).ready(function(){
                 quantity: 1
             },
             error: function() {alert("Что-то пошло не так...");},
-            success: function(answer){
-                if(answer.result == 1)
+            success: function(response){
+                if(response.result == 1)
                     alert("Товар добавлен в корзину!");
                 else
                     alert("Что-то пошло не так...");

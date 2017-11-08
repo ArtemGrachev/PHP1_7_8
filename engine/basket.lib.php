@@ -12,10 +12,10 @@ function prepareBasketBlock(){
             "amount" => 0
         ];
 
-        $basket_data = getRowResult("SELECT SUM(quantity) AS goods, SUM(price) as amount 
-            FROM basket 
-            WHERE id_user = ".(int)$_SESSION['user']['id_user']." 
-            AND is_in_order = 0 ");
+        $basket_data = getRowResult("SELECT COUNT(id_basket) AS goods, SUM(price) as amount 
+                                        FROM basket 
+                                        WHERE id_user = ".(int)$_SESSION['user']['id_user']." 
+                                        AND is_in_order = 0 ");
 
         if(isset($basket_data['goods'])){
             $basket_vars['goods'] = $basket_data['goods'];
@@ -44,7 +44,7 @@ function prepareBasketPage(&$page_vars){
         $page_vars["amount"] = $basket_sum["amount"];
 
 
-        $basket_data = getAssocResult("SELECT b.id_basket, b.id_good, b.price, b.quantity, g.good_name, g.good_price
+        $basket_data = getAssocResult("SELECT b.id_basket, b.id_good, b.price, g.good_name, g.good_price
                                         FROM basket b
                                         LEFT JOIN goods g USING(id_good)
                                         WHERE id_user = ".(int)$_SESSION['user']['id_user']." 
@@ -105,4 +105,27 @@ function removeProductFromBasket(&$response){
             }
         }
     }
+}
+
+/**
+ * Получаем корзину пользователя по его ID
+ * @param $id_user
+ * @return array
+ */
+function getBasketContentsByUserId($id_user){
+    $sql = "SELECT * FROM basket WHERE id_user = " .(int)$id_user. " AND is_in_order = 0";
+    $result = getAssocResult($sql);
+
+    return $result;
+}
+
+/**
+ * Получаем общую стоииомть корзины пользователя по его ID
+ * @param $id_user
+ */
+function getBasketAmountByUserId($id_user){
+    $sql = "SELECT SUM(price) as amount FROM basket WHERE id_user = " .(int)$id_user. " AND is_in_order = 0";
+    $result = getRowResult($sql);
+
+    return $result["amount"];
 }

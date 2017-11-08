@@ -88,24 +88,10 @@ function prepareVariables($page_name, $action = ""){
                 prepareBasketPage($vars);
             else
                 $vars['response'] = doActionWithBasket($action);
+
             break;
         case "catalogue":
             prepareCataloguePage($vars);
-            break;
-        case "basketAction":
-            if (isset($_GET['id_product']) && (int)$_GET['id_product'] > 0) {
-                if (isset($_GET['quantity']) && (int)$_GET['quantity'] > 0) {
-                    $vars['response'] = makeBasketAction($_GET['id_product'], $_GET['quantity']);
-                } else {
-                    $vars['response'] = makeBasketAction($_GET['id_product']);
-                }
-                if (strpos ($vars['response'], 'result: 1') !== false && @$_SERVER['HTTP_REFERER'] != null) {
-                    header("Location: ".$_SERVER['HTTP_REFERER']);
-                }
-            } else {
-                $vars['result'] = '{result: 0,
-                errorMessage: "Параметры не заданы или заданы неверно"}';
-            }
             break;
         case "calculator":
             if(isset($_POST["operation"])){
@@ -116,15 +102,12 @@ function prepareVariables($page_name, $action = ""){
                 $vars["result"] = makeOperation($operation, $oper1, $oper2);
             }
             break;
-        case "registration":
-            if (isset($_SESSION['messReg']) && $_SESSION['messReg'] != '') {
-                $vars['error'] = $_SESSION['messReg'];
-                unset($_SESSION['messReg']);
-            } elseif (alreadyLoggedIn()) {
-                $vars['error'] = "<p>Выйдите из учётной записи перед тем, как регистрировать нового пользователя.</p>";
-                regSaveValues($vars);
-            } elseif (isset($_POST['reg']) && $_POST['reg'] === 'true') {
-                register($vars);
+        case "order":
+            // даём оформлять заказ только залогиненному пользователю
+            if(alreadyLoggedIn()){
+                $order_action_result = makeOrderAction();
+
+                $vars["result"] = ($order_action_result["success"]) ? "Заказ #".$order_action_result["id_order"]." оформлен" : "Ошибка";
             }
             break;
     }
